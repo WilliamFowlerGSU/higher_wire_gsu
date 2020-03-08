@@ -10,6 +10,8 @@ final analytics = new FirebaseAnalytics();
 final _auth = FirebaseAuth.instance;
 final databaseReference = FirebaseDatabase.instance.reference();
 
+FirebaseUser currentUser;
+
 var sourceList = [];
 var userDatabaseReference;
 var articleSourcesDatabaseReference;
@@ -26,7 +28,7 @@ Future<String> _ensureLoggedIn() async {
   assert(!user.isAnonymous);
   assert(await user.getIdToken() != null);
 
-  final FirebaseUser currentUser = await _auth.currentUser();
+  currentUser = await _auth.currentUser();
   assert(user.uid == currentUser.uid);
 
   userDatabaseReference = databaseReference.child(user.uid);

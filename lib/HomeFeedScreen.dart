@@ -39,12 +39,10 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
     }
     var response = await http.get(
         Uri.encodeFull(
-            'https://newsapi.org/v2/top-headlines?sources=' + newsSelection),
-        headers: {
-          "Accept": "application/json",
-          "X-Api-Key": "ab31ce4a49814a27bbb16dd5c5c06608"
-        });
+            "http://newsapi.org/v2/top-headlines?country=us&apiKey=57ea042e27334f2e89f8c87e569d127f",));
     var localData = jsonDecode(response.body);
+    for(var i = 0; i < 10; i++) {
+    }
     this.setState(() {
       data = localData;
       snapshot = snap;
@@ -174,7 +172,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
               controller: _controller,
               onSubmitted: handleTextInputSubmit,
               decoration: new InputDecoration(
-                  hintText: 'Finding a News?', icon: new Icon(Icons.search)),
+                  hintText: 'Search For News...', icon: new Icon(Icons.search)),
             ),
           ),
         ),
@@ -197,8 +195,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                           new Padding(
                             padding: new EdgeInsets.only(left: 4.0),
                             child: new Text(
-                              timeAgo.format((DateTime.parse(data["articles"]
-                              [index]["publishedAt"]))),
+                              timeAgo.format((DateTime.parse(data["articles"][index]["publishedAt"]))),
                               style: new TextStyle(
                                 fontWeight: FontWeight.w400,
                                 color: Colors.grey[600],
@@ -208,8 +205,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                           new Padding(
                             padding: new EdgeInsets.all(5.0),
                             child: new Text(
-                              data["articles"][index]["source"]
-                              ["name"],
+                              data["articles"][index]["source"]["name"],
                               style: new TextStyle(
                                 fontWeight: FontWeight.w500,
                                 color: Colors.grey[700],
@@ -233,8 +229,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                         bottom: 8.0,
                                         top: 8.0),
                                     child: new Text(
-                                      data["articles"][index]
-                                      ["title"],
+                                      data["articles"][index]["title"],
                                       style: new TextStyle(
                                         fontWeight: FontWeight.bold,
                                       ),
@@ -246,8 +241,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                         right: 4.0,
                                         bottom: 4.0),
                                     child: new Text(
-                                      data["articles"][index]
-                                      ["description"],
+                                      data["articles"][index]["description"],
                                       style: new TextStyle(
                                         color: Colors.grey[500],
                                       ),
@@ -271,8 +265,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                   height: 100.0,
                                   width: 100.0,
                                   child: new Image.network(
-                                    data["articles"][index]
-                                    ["urlToImage"],
+                                    data["articles"][index]["urlToImage"],
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -288,8 +281,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                         child: buildButtonColumn(
                                             Icons.share)),
                                     onTap: () {
-                                      Share.share(data["articles"][index]
-                                      ["url"]);
+                                      Share.share(data["articles"][index]["url"]);
                                     },
                                   ),
                                   new GestureDetector(
@@ -297,8 +289,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                         padding:
                                         new EdgeInsets.all(5.0),
                                         child: _hasArticle(
-                                            data["articles"]
-                                            [index])
+                                            data["articles"][index])
                                             ? buildButtonColumn(
                                             Icons.bookmark)
                                             : buildButtonColumn(Icons
@@ -316,10 +307,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                             Icons.not_interested)),
                                     onTap: () {
                                       _onRemoveSource(
-                                          data["articles"][index]
-                                          ["source"]["id"],
-                                          data["articles"][index]
-                                          ["source"]["name"]);
+                                          data["articles"][index]["source"]["id"],
+                                          data["articles"][index]["source"]["name"]);
                                     },
                                   ),
                                 ],
