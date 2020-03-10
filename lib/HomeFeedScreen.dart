@@ -38,11 +38,19 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
       });
     }
     var response = await http.get(
-        Uri.encodeFull(
-            "http://newsapi.org/v2/top-headlines?country=us&apiKey=57ea042e27334f2e89f8c87e569d127f",));
+        Uri.encodeFull("http://newsapi.org/v2/top-headlines?country=us&apiKey=57ea042e27334f2e89f8c87e569d127f",));
     var localData = jsonDecode(response.body);
-    for(var i = 0; i < 10; i++) {
+    for(var i = 0; i < 20; i++) {
+      if (localData["articles"][i]["description"] == null) {
+        localData["articles"][i]["description"] = "No description";
+      }
+      if (localData["articles"][i]["urlToImage"] == null) {
+        localData["articles"][i]["urlToImage"] = 'assets/images/icons/higherWire.png';
+      }
+      print(localData["articles"][i]["urlToImage"]);
     }
+    print(localData["articles"][1]["description"]);
+
     this.setState(() {
       data = localData;
       snapshot = snap;
@@ -264,9 +272,12 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                 child: new SizedBox(
                                   height: 100.0,
                                   width: 100.0,
-                                  child: new Image.network(
-                                    data["articles"][index]["urlToImage"],
-                                    fit: BoxFit.cover,
+                                  child: new Container(
+                                      child: FadeInImage.assetNetwork(
+                                          placeholder: 'assets/images/icons/higherWire.png',
+                                          image:data["articles"][index]["urlToImage"],
+                                          fit: BoxFit.cover,
+                                      )
                                   ),
                                 ),
                               ),

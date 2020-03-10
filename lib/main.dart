@@ -7,7 +7,7 @@ import './globalStore.dart' as globalStore;
 void main() {
   runApp(new MaterialApp(home: new HigherWire(),
     theme: ThemeData(
-    primaryColor: Colors.green,
+    primaryColor: Colors.grey,
   ),));
 }
 
@@ -40,9 +40,19 @@ class HigherWireState extends State<HigherWire>
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new Text("Higher Wire"),
+          title: new IconButton(
+              icon: Image.asset('assets/images/icons/higherWire.png',
+                  scale: 0.1),
+            ),
           centerTitle: true,
-
+//          actions: <Widget>[
+//            IconButton(
+//              icon: Icon(
+//                Icons.settings,
+//                color: Colors.white,
+//              ),
+//            )
+//          ],
         ),
         bottomNavigationBar: new Material(
             color: Colors.green[600],
