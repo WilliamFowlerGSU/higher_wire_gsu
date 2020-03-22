@@ -65,9 +65,19 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
     userDatabaseReference = databaseReference.child(globalStore.currentUser.uid);
     articleDatabaseReference = userDatabaseReference.child('articles');
     var snap = await articleDatabaseReference.once();
+    var localData = jsonDecode(response.body);
+
+    for(var i = 0; i < localData["articles"].length; i++) {
+      if (localData["articles"][i]["description"] == null) {
+        localData["articles"][i]["description"] = "No description";
+      }
+      if (localData["articles"][i]["urlToImage"] == null) {
+        localData["articles"][i]["urlToImage"] = 'assets/images/icons/higherWire.png';
+      }
+    }
     if (mounted) {
       this.setState(() {
-        data = json.decode(response.body);
+        data = localData;
         snapshot = snap;
       });
     }
@@ -111,7 +121,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
           articleDatabaseReference.child(k).remove();
           Scaffold.of(context).showSnackBar(new SnackBar(
             content: new Text('Article removed'),
-            backgroundColor: Colors.grey[600],
+            backgroundColor: Colors.white,
           ));
         }
       });
@@ -119,7 +129,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
         pushArticle(article);
         Scaffold.of(context).showSnackBar(new SnackBar(
           content: new Text('Article added'),
-          backgroundColor: Colors.grey[600],
+          backgroundColor: Colors.white,
         ));
       }
       this.setState(() {
@@ -153,7 +163,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
         title: new Text(sourceName),
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.deepPurpleAccent[100],
       body: data == null
           ? const Center(child: const CircularProgressIndicator())
           : data["articles"].length != 0
@@ -163,6 +173,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
         itemBuilder: (BuildContext context, int index) {
           return new GestureDetector(
             child: new Card(
+              color: Colors.black,
               elevation: 1.7,
               child: new Padding(
                 padding: new EdgeInsets.all(10.0),
@@ -173,11 +184,10 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                         new Padding(
                           padding: new EdgeInsets.only(left: 4.0),
                           child: new Text(
-                            timeAgo.format(DateTime.parse(data["articles"]
-                            [index]["publishedAt"])),
+                            timeAgo.format(DateTime.parse(data["articles"][index]["publishedAt"])),
                             style: new TextStyle(
                               fontWeight: FontWeight.w400,
-                              color: Colors.grey[600],
+                              color: Colors.white70,
                             ),
                           ),
                         ),
@@ -186,8 +196,8 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                           child: new Text(
                             data["articles"][index]["source"]["name"],
                             style: new TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[700],
+                              fontWeight: FontWeight.bold,
+                              color: Colors.purpleAccent,
                             ),
                           ),
                         ),
@@ -211,6 +221,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                                     data["articles"][index]["title"],
                                     style: new TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -220,10 +231,9 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                                       right: 4.0,
                                       bottom: 4.0),
                                   child: new Text(
-                                    data["articles"][index]
-                                    ["description"],
+                                    data["articles"][index]["description"],
                                     style: new TextStyle(
-                                      color: Colors.grey[500],
+                                      color: Colors.white70,
                                     ),
                                   ),
                                 ),
@@ -243,8 +253,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                                 height: 100.0,
                                 width: 100.0,
                                 child: new Image.network(
-                                  data["articles"][index]
-                                  ["urlToImage"],
+                                  data["articles"][index]["urlToImage"],
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -297,11 +306,11 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             new Icon(Icons.chrome_reader_mode,
-                color: Colors.grey, size: 60.0),
+                color: Colors.purpleAccent, size: 120.0),
             new Text(
-              "No articles saved",
+              "No Articles Saved",
               style:
-              new TextStyle(fontSize: 24.0, color: Colors.grey),
+              new TextStyle(fontSize: 40.0, color: Colors.purpleAccent),
             ),
           ],
         ),

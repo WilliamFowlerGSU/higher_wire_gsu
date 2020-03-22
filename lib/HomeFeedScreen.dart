@@ -40,6 +40,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
     var response = await http.get(
         Uri.encodeFull("http://newsapi.org/v2/top-headlines?country=us&apiKey=57ea042e27334f2e89f8c87e569d127f",));
     var localData = jsonDecode(response.body);
+    // adds values that return as null
     for(var i = 0; i < 20; i++) {
       if (localData["articles"][i]["description"] == null) {
         localData["articles"][i]["description"] = "No description";
@@ -47,9 +48,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
       if (localData["articles"][i]["urlToImage"] == null) {
         localData["articles"][i]["urlToImage"] = 'assets/images/icons/higherWire.png';
       }
-      print(localData["articles"][i]["urlToImage"]);
     }
-    print(localData["articles"][1]["description"]);
 
     this.setState(() {
       data = localData;
@@ -95,15 +94,15 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
           flag = 1;
           globalStore.articleDatabaseReference.child(k).remove();
           Scaffold.of(context).showSnackBar(new SnackBar(
-            content: new Text('Article removed'),
-            backgroundColor: Colors.grey[600],
+            content: new Text('Article Removed'),
+            backgroundColor: Colors.purpleAccent,
           ));
         }
       });
       if (flag != 1) {
         Scaffold.of(context).showSnackBar(new SnackBar(
-          content: new Text('Article saved'),
-          backgroundColor: Colors.grey[600],
+          content: new Text('Article Saved'),
+          backgroundColor: Colors.purpleAccent,
         ));
         pushArticle(article);
       }
@@ -119,8 +118,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
         if (source['id'].compareTo(id) == 0) {
           Scaffold.of(context).showSnackBar(new SnackBar(
             content: new Text('Are you sure you want to remove $name?'),
-            backgroundColor: Colors.grey[600],
-            duration: new Duration(seconds: 3),
+            backgroundColor: Colors.purpleAccent,
+            duration: new Duration(seconds: 5),
             action: new SnackBarAction(
                 label: 'Yes',
                 onPressed: () {
@@ -128,8 +127,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                       .child(key)
                       .remove();
                   Scaffold.of(context).showSnackBar(new SnackBar(
-                      content: new Text('$name removed'),
-                      backgroundColor: Colors.grey[600]));
+                      content: new Text('$name Removed'),
+                      backgroundColor: Colors.purpleAccent));
                 }),
           ));
         }
@@ -169,12 +168,12 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
   Widget build(BuildContext context) {
     return new Scaffold(
       resizeToAvoidBottomPadding: false,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.deepPurpleAccent[100],
       body: new Column(children: <Widget>[
         new Padding(
           padding: new EdgeInsets.all(0.0),
           child: new PhysicalModel(
-            color: Colors.white,
+            color: Colors.purpleAccent,
             elevation: 3.0,
             child: new TextField(
               controller: _controller,
@@ -193,6 +192,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             padding: new EdgeInsets.all(8.0),
             itemBuilder: (BuildContext context, int index) {
               return new Card(
+               color: Colors.black,
                 elevation: 1.7,
                 child: new Padding(
                   padding: new EdgeInsets.all(10.0),
@@ -205,8 +205,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                             child: new Text(
                               timeAgo.format((DateTime.parse(data["articles"][index]["publishedAt"]))),
                               style: new TextStyle(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.grey[600],
+                                fontWeight: FontWeight.w300,
+                                color: Colors.white70,
                               ),
                             ),
                           ),
@@ -216,7 +216,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                               data["articles"][index]["source"]["name"],
                               style: new TextStyle(
                                 fontWeight: FontWeight.w500,
-                                color: Colors.grey[700],
+                                color: Colors.purpleAccent,
                               ),
                             ),
                           ),
@@ -239,7 +239,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                     child: new Text(
                                       data["articles"][index]["title"],
                                       style: new TextStyle(
-                                        fontWeight: FontWeight.bold,
+                                          fontWeight: FontWeight.bold,
+                                          color: Colors.white
                                       ),
                                     ),
                                   ),
@@ -251,7 +252,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
                                     child: new Text(
                                       data["articles"][index]["description"],
                                       style: new TextStyle(
-                                        color: Colors.grey[500],
+                                        color: Colors.white70,
+                                        fontWeight: FontWeight.w100,
                                       ),
                                     ),
                                   ),
@@ -339,11 +341,11 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 new Icon(Icons.chrome_reader_mode,
-                    color: Colors.grey, size: 60.0),
+                    color: Colors.purpleAccent, size: 120.0),
                 new Text(
                   "No articles saved",
                   style: new TextStyle(
-                      fontSize: 24.0, color: Colors.grey),
+                      fontSize: 40.0, color: Colors.purpleAccent),
                 ),
               ],
             ),

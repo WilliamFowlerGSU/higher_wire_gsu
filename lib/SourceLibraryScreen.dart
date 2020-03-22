@@ -70,16 +70,25 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
         if (v['id'].compareTo(id) == 0) {
           flag = 1;
           Scaffold.of(context).showSnackBar(new SnackBar(
-            content: new Text('$name removed'),
-            backgroundColor: Colors.grey[600],
+            backgroundColor: Colors.purpleAccent,
+            content: new Text('$name removed',
+              textAlign: TextAlign.center,
+              style: new TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white),
+            ),
           ));
           globalStore.articleSourcesDatabaseReference.child(k).remove();
         }
       });
       if (flag != 1) {
         Scaffold.of(context).showSnackBar(new SnackBar(
-            content: new Text('$name added'),
-            backgroundColor: Colors.grey[600]));
+            content: new Text('$name added',
+              textAlign: TextAlign.center,
+              style: new TextStyle(
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),),
+            backgroundColor: Colors.purpleAccent));
         pushSource(name, id);
       }
     } else {
@@ -104,18 +113,14 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
 //    }
     try {
       return new CircleAvatar(
-        child: new Icon(Icons.add_to_home_screen , color:Colors.yellowAccent, size: 36.0),
-        backgroundColor: Colors.green,
+        child: new Icon(Icons.add_to_home_screen , color:Colors.black, size: 60.0),
+        backgroundColor: Colors.deepPurpleAccent[100],
         radius: 40.0,
-//        backgroundColor: Colors.transparent,
-//        backgroundImage: new NetworkImage(
-//            "https://icons.better-idea.org/icon?url=" + url + "&size=120"),
-//        radius: 40.0,
       );
     } catch (Exception) {
       return new CircleAvatar(
-        child: new Icon(Icons.offline_bolt, color:Colors.green),
-        backgroundColor: Colors.yellowAccent,
+        child: new Icon(Icons.offline_bolt, color:Colors.black),
+        backgroundColor: Colors.deepPurpleAccent[100],
         radius: 40.0,
       );
     }
@@ -130,7 +135,7 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.black,
       body: sources == null
           ? const Center(child: const CircularProgressIndicator())
           : new GridView.builder(
@@ -152,6 +157,10 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
                         maxLines: 2,
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
+                        style: new TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.purpleAccent,
+                        ),
                       ),
                     ),
                   )
@@ -185,11 +194,11 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
                                       sources["sources"][index]["id"])
                                       ? new Icon(
                                     Icons.check_circle,
-                                    color: Colors.greenAccent[700],
+                                    color: Colors.purpleAccent,
                                   )
                                       : new Icon(
                                     Icons.add_circle_outline,
-                                    color: Colors.grey[500],
+                                    color: Colors.purpleAccent,
                                   ),
                                   onTap: () {
                                     _onAddTap(

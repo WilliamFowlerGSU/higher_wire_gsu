@@ -2,12 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import './HomeFeedScreen.dart' as HomeFeedScreeen;
 import './SourceLibraryScreen.dart' as SourceLibraryScreen;
+import './CategoriesScreen.dart' as CategoriesScreen;
 import './globalStore.dart' as globalStore;
 
 void main() {
   runApp(new MaterialApp(home: new HigherWire(),
     theme: ThemeData(
-    primaryColor: Colors.grey,
+    primaryColor: Colors.purple[600],
   ),));
 }
 
@@ -27,7 +28,7 @@ class HigherWireState extends State<HigherWire>
   @override
   void initState() {
     super.initState();
-    controller = new TabController(vsync: this, length: 2);
+    controller = new TabController(vsync: this, length: 3);
   }
 
   @override
@@ -40,31 +41,31 @@ class HigherWireState extends State<HigherWire>
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: new IconButton(
-              icon: Image.asset('assets/images/icons/higherWire.png',
-                  scale: 0.1),
-            ),
-          centerTitle: true,
-//          actions: <Widget>[
-//            IconButton(
-//              icon: Icon(
-//                Icons.settings,
-//                color: Colors.white,
-//              ),
-//            )
-//          ],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+          Image.asset(
+          'assets/images/icons/higherWire.png',
+            height: 120.0,
+            width: 120.0,
+            fit: BoxFit.cover,
+            color: Colors.white,
+              ),
+            ],
+          ),
         ),
         bottomNavigationBar: new Material(
-            color: Colors.green[600],
+            color: Colors.purple,
             child: new TabBar(controller: controller, tabs: <Tab>[
-              new Tab(icon: new Icon(Icons.view_headline, size: 30.0)),
-              new Tab(icon: new Icon(Icons.view_module, size: 30.0)),
-//              new Tab(icon: new Icon(Icons.explore, size: 30.0)),
+              new Tab(icon: new Icon(Icons.view_headline, size: 30.0, color: Colors.white)),
+              new Tab(icon: new Icon(Icons.view_module, size: 30.0, color: Colors.white)),
+              new Tab(icon: new Icon(Icons.explore, size: 30.0, color: Colors.white)),
 //              new Tab(icon: new Icon(Icons.bookmark, size: 30.0)),
             ])),
         body: new TabBarView(controller: controller, children: <Widget>[
           new HomeFeedScreeen.HomeFeedScreen(),
           new SourceLibraryScreen.SourceLibraryScreen(),
+          new CategoriesScreen.CategoriesScreen(),
         ]));
   }
 }

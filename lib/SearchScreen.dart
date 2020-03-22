@@ -39,11 +39,10 @@ class _SearchScreenState extends State<SearchScreen> {
           "Accept": "application/json",
           "X-Api-Key": "57ea042e27334f2e89f8c87e569d127f"
         });
-    var snap = await globalStore.articleDatabaseReference;
+    var snap = await globalStore.articleDatabaseReference.once();
     if (mounted) {
       this.setState(() {
         data = json.decode(response.body);
-        print(searchQuery + "Search Screen Response:::: " + data);
         snapshot = snap;
       });
     }
@@ -131,7 +130,7 @@ class _SearchScreenState extends State<SearchScreen> {
         title: new Text(searchQuery),
         centerTitle: true,
       ),
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.deepPurpleAccent[100],
       body: data == null
           ? const Center(child: const CircularProgressIndicator())
           : data["articles"].length < 1
@@ -161,6 +160,7 @@ class _SearchScreenState extends State<SearchScreen> {
         itemBuilder: (BuildContext context, int index) {
           return new GestureDetector(
             child: new Card(
+              color: Colors.black,
               elevation: 1.7,
               child: new Padding(
                 padding: new EdgeInsets.all(10.0),
@@ -173,8 +173,7 @@ class _SearchScreenState extends State<SearchScreen> {
                           child: new Text(
                             timeago.format((DateTime.parse(data["articles"] [index]["publishedAt"]))),
                             style: new TextStyle(
-                              fontWeight: FontWeight.w400,
-                              color: Colors.grey[600],
+                              color: Colors.white70,
                             ),
                           ),
                         ),
@@ -183,8 +182,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           child: new Text(
                             data["articles"][index]["source"]["name"],
                             style: new TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: Colors.grey[700],
+                              fontWeight: FontWeight.normal,
+                              color: Colors.purpleAccent,
                             ),
                           ),
                         ),
@@ -208,6 +207,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                     data["articles"][index]["title"],
                                     style: new TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
@@ -217,10 +217,9 @@ class _SearchScreenState extends State<SearchScreen> {
                                       right: 4.0,
                                       bottom: 4.0),
                                   child: new Text(
-                                    data["articles"][index]
-                                    ["description"],
+                                    data["articles"][index]["description"],
                                     style: new TextStyle(
-                                      color: Colors.grey[500],
+                                      color: Colors.white70,
                                     ),
                                   ),
                                 ),
@@ -241,8 +240,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 height: 100.0,
                                 width: 100.0,
                                 child: new Image.network(
-                                  data["articles"][index]
-                                  ["urlToImage"],
+                                  data["articles"][index]["urlToImage"],
                                   fit: BoxFit.cover,
                                 ),
                               ),

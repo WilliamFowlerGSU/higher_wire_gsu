@@ -5,19 +5,19 @@ List list = [
     "id": "business",
     "name": "Business",
     "icon": Icons.work,
-    "color": Colors.teal
+    "color": Colors.red
   },
   {
     "id": "technology",
     "name": "Technology",
     "icon": Icons.smartphone,
-    "color": Colors.grey[600]
+    "color": Colors.cyanAccent
   },
   {
     "id": "science-and-nature",
-    "name": "Science and Nature",
+    "name": "Science",
     "icon": Icons.nature_people,
-    "color": Colors.green[600]
+    "color": Colors.purpleAccent
   },
   {
     "id": "sport",
@@ -45,9 +45,9 @@ List list = [
   },
   {
     "id": "health-and-medical",
-    "name": "Health and Medical",
+    "name": "Health",
     "icon": Icons.local_hospital,
-    "color": Colors.red
+    "color": Colors.teal
   },
   {
     "id": "music",
@@ -59,6 +59,36 @@ List list = [
     "id": "politics",
     "name": "Politics",
     "icon": Icons.assistant_photo,
+    "color": Colors.deepOrange
+  },
+  {
+    "id": "money",
+    "name": "Money",
+    "icon": Icons.attach_money,
+    "color": Colors.pinkAccent
+  },
+  {
+    "id": "world",
+    "name": "World",
+    "icon": Icons.language,
+    "color": Colors.blue
+  },
+  {
+    "id": "domestic",
+    "name": "Domestic",
+    "icon": Icons.new_releases,
     "color": Colors.blueGrey
+  },
+  {
+    "id": "atlanta",
+    "name": "Local",
+    "icon": Icons.build,
+    "color": Colors.redAccent
+  },
+  {
+    "id": "current events",
+    "name": "Current Events",
+    "icon": Icons.arrow_forward_ios,
+    "color": Colors.yellowAccent
   },
 ];
