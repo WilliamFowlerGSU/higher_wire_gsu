@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import './HomeFeedScreen.dart' as HomeFeedScreeen;
 import './SourceLibraryScreen.dart' as SourceLibraryScreen;
 import './CategoriesScreen.dart' as CategoriesScreen;
+import './BookmarkScreen.dart' as BookmarkScreen;
+
 import './globalStore.dart' as globalStore;
 
 void main() {
@@ -28,7 +30,7 @@ class HigherWireState extends State<HigherWire>
   @override
   void initState() {
     super.initState();
-    controller = new TabController(vsync: this, length: 3);
+    controller = new TabController(vsync: this, length: 4);
   }
 
   @override
@@ -60,12 +62,13 @@ class HigherWireState extends State<HigherWire>
               new Tab(icon: new Icon(Icons.view_headline, size: 30.0, color: Colors.white)),
               new Tab(icon: new Icon(Icons.view_module, size: 30.0, color: Colors.white)),
               new Tab(icon: new Icon(Icons.explore, size: 30.0, color: Colors.white)),
-//              new Tab(icon: new Icon(Icons.bookmark, size: 30.0)),
+              new Tab(icon: new Icon(Icons.bookmark, size: 30.0, color: Colors.white)),
             ])),
         body: new TabBarView(controller: controller, children: <Widget>[
           new HomeFeedScreeen.HomeFeedScreen(),
           new SourceLibraryScreen.SourceLibraryScreen(),
           new CategoriesScreen.CategoriesScreen(),
+          new BookmarkScreen.BookmarksScreen(),
         ]));
   }
 }
