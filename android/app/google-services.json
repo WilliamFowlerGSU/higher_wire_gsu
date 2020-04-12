@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "426287034462",
+    "firebase_url": "https://higher-wire-app-db.firebaseio.com",
+    "project_id": "higher-wire-app-db",
+    "storage_bucket": "higher-wire-app-db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:426287034462:android:d66df65ac548d8fc4704cf",
+        "android_client_info": {
+          "package_name": "com.learnyoucode.higher_wire_gsu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "426287034462-0qs9op8d2ofcmiv3u1a74q72p1fdnimg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.learnyoucode.higherWireGsu",
+            "certificate_hash": "dc98d91a4c516d3e1ab4c18ac3ae454e05f9ada8"
+          }
+        },
+        {
+          "client_id": "426287034462-krt1ca2162sjrugn1gd55jntpotek2bl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDR8L9F_Ukb8dT0rrEABNYHZaxqTQOm9wE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "426287034462-krt1ca2162sjrugn1gd55jntpotek2bl.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "426287034462-a6vjb2in2a9cjpre6apndlcd48rkhfcb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.learnyoucode.higherWireGsu"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
