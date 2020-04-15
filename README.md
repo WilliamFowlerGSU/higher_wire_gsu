@@ -1,4 +1,5 @@
 # higher_wire_gsu
+![](demo.gif)
 
 ## TECHNOLOGIES USED: 
 The Higher Wire Mobile News Application will be developed with the Flutter framework. Flutter is a new mobile development SDK brought to you by Google to help build fast, beautiful, and cross-platform mobile applications. It uses a new language called Dart. Higher Wire will use a News API to fetch real time data. Firebase will be utilized on the backend and for authentication. To use this app, users will provide a one-time Google sign-in. Mockplus, a robust all-in-one product design platform for prototyping will be used to aid UI design. All code repos will be hosted on Github. 
