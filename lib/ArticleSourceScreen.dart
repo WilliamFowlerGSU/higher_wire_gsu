@@ -234,6 +234,7 @@ class _ArticleSourceScreenState extends State<ArticleSourceScreen> {
                                     data["articles"][index]["description"],
                                     style: new TextStyle(
                                       color: Colors.white70,
+                                      fontWeight: FontWeight.w600,
                                     ),
                                   ),
                                 ),

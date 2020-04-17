@@ -141,7 +141,7 @@ class _BookmarksScreenState extends State<BookmarksScreen> {
                                             snapshot.value["description"],
                                             style: new TextStyle(
                                               color: Colors.white70,
-                                              fontWeight: FontWeight.w100,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                         ),

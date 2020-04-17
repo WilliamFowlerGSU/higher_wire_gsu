@@ -39,15 +39,15 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
   CircleAvatar _loadAvatar(var url) {
     try {
       return new CircleAvatar(
-        child: new Icon(Icons.add_to_home_screen , color:Colors.black, size: 40.0),
+        child: new Icon(Icons.add_to_home_screen , color:Colors.black, size: 45.0),
         backgroundColor: Colors.deepPurpleAccent[100],
-        radius: 35.0,
+        radius: 37.5,
       );
     } catch (Exception) {
       return new CircleAvatar(
         child: new Icon(Icons.offline_bolt, color:Colors.black),
         backgroundColor: Colors.deepPurpleAccent[100],
-        radius: 40.0,
+        radius: 45.0,
       );
     }
   }
@@ -66,8 +66,8 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
           ? const Center(child: const CircularProgressIndicator())
           : new GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3, mainAxisSpacing: 25.0),
-        padding: const EdgeInsets.all(10.0),
+            crossAxisCount: 3, mainAxisSpacing: 20.0),
+        padding: const EdgeInsets.all(5.0),
         itemCount: sources == null ? 0 : sources["sources"].length,
         itemBuilder: (BuildContext context, int index) {
           return new GridTile(
@@ -84,8 +84,8 @@ class _SourceLibraryScreenState extends State<SourceLibraryScreen> {
                         textAlign: TextAlign.center,
                         overflow: TextOverflow.ellipsis,
                         style: new TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          fontWeight: FontWeight.normal,
                           color: Colors.purpleAccent,
                         ),
                       ),

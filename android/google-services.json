@@ -8,18 +8,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:426287034462:android:d66df65ac548d8fc4704cf",
+        "mobilesdk_app_id": "1:426287034462:android:f30a139070a56bb44704cf",
         "android_client_info": {
-          "package_name": "com.learnyoucode.higherWireGsu"
+          "package_name": "com.learnyoucode.higher_wire_gsu"
         }
       },
       "oauth_client": [
         {
-          "client_id": "426287034462-0qs9op8d2ofcmiv3u1a74q72p1fdnimg.apps.googleusercontent.com",
+          "client_id": "426287034462-vlg3j29ir10k9q4aclvucqusl7fponcn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.learnyoucode.higherWireGsu",
-            "certificate_hash": "dc98d91a4c516d3e1ab4c18ac3ae454e05f9ada8"
+            "package_name": "com.learnyoucode.higher_wire_gsu",
+            "certificate_hash": "60be8e18f963af7949cc2501913e7d9bacaac76c"
           }
         },
         {
